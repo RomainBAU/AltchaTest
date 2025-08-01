@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Altchat via Sentinel</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://altcha.org/lib/altcha.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <div class="login-card">
+            <div class="header">
+                <h1>🔐 Connexion Test</h1>
+                <p>Test Altchat via Sentinel</p>
+            </div>
+
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="username">Nom d'utilisateur:</label>
+                    <input type="text" id="username" name="username" required>
+                    <small class="hint">Essayez: admin, user, ou demo</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Mot de passe:</label>
+                    <input type="password" id="password" name="password" required>
+                    <small class="hint">admin: password123, user: test123, demo: demo123</small>
+                </div>
+
+                <div class="form-group">
+                    <label>Captcha:</label>
+                    <div id="captcha-container">
+                        <altcha-widget id="altcha" challenge-url="/api/captcha-config"></altcha-widget>
+                    </div>
+                </div>
+
+                <button type="submit" id="submitBtn" class="submit-btn">
+                    <span class="btn-text">Se connecter</span>
+                    <span class="btn-loader" style="display: none;">⏳</span>
+                </button>
+            </form>
+
+            <div id="message" class="message"></div>
+
+            <div class="footer">
+                <p>🛡️ Sécurisé par Altchat</p>
+                <small>Security Group: sgr_1j1ifgqj00090kd8rgu</small>
+            </div>
+        </div>
+
+        <div class="info-panel">
+            <h3>ℹ️ Informations de test</h3>
+            <div class="info-item">
+                <strong>Dashboard Sentinel:</strong>
+                <a href="http://localhost:8080/#/dashboard" target="_blank">http://localhost:8080/#/dashboard</a>
+            </div>
+            <div class="info-item">
+                <strong>Comptes de test:</strong>
+                <ul>
+                    <li>admin / password123</li>
+                    <li>user / test123</li>
+                    <li>demo / demo123</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
