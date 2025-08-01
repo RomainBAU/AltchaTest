@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion Réussie - Altchat Test</title>
+    <link rel="stylesheet" href="success-styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="success-card">
+            <div class="icon-container">
+                <div class="success-icon">✅</div>
+            </div>
+            
+            <h1>Félicitations !</h1>
+            <h2 id="welcome-message">Connexion réussie</h2>
+            
+            <div class="success-content">
+                <p class="main-message">
+                    🎉 Votre authentification a été validée avec succès !
+                </p>
+                
+                <div class="details">
+                    <div class="detail-item">
+                        <span class="label">👤 Utilisateur:</span>
+                        <span class="value" id="username">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">🕒 Connecté à:</span>
+                        <span class="value" id="connection-time">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">🛡️ Sécurité:</span>
+                        <span class="value">Validée par Altchat</span>
+                    </div>
+                </div>
+
+                <div class="status-badges">
+                    <div class="badge success">
+                        <span class="badge-icon">🔐</span>
+                        <span>Authentification OK</span>
+                    </div>
+                    <div class="badge success">
+                        <span class="badge-icon">🛡️</span>
+                        <span>Captcha Validé</span>
+                    </div>
+                    <div class="badge success">
+                        <span class="badge-icon">✨</span>
+                        <span>Accès Autorisé</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="actions">
+                <a href="/" class="btn btn-primary">
+                    🏠 Retour à l'accueil
+                </a>
+                <a href="http://localhost:8080/#/dashboard" target="_blank" class="btn btn-secondary">
+                    📊 Dashboard Sentinel
+                </a>
+            </div>
+
+            <div class="footer">
+                <p>🎊 Test Altchat via Sentinel - Mission accomplie !</p>
+                <small>Security Group: sgr_1j1ifgqj00090kd8rgu</small>
+            </div>
+        </div>
+
+        <div class="celebration">
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+        </div>
+    </div>
+
+    <script>
+        // Récupérer le nom d'utilisateur depuis l'URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const username = urlParams.get('user') || 'Utilisateur';
+        
+        document.getElementById('username').textContent = username;
+        document.getElementById('welcome-message').textContent = `Bienvenue ${username} !`;
+        
+        // Afficher l'heure de connexion
+        const now = new Date();
+        const timeString = now.toLocaleString('fr-FR', {
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+        });
+        document.getElementById('connection-time').textContent = timeString;
+
+        // Animation de célébration
+        function createConfetti() {
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#dda0dd'];
+            
+            setInterval(() => {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti-piece';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDuration = (Math.random() * 2 + 1) + 's';
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => {
+                    confetti.remove();
+                }, 3000);
+            }, 100);
+        }
+
+        // Démarrer l'animation après un petit délai
+        setTimeout(createConfetti, 500);
+    </script>
+</body>
+</html>

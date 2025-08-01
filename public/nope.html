@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accès Refusé - NOPE</title>
+    <link rel="stylesheet" href="nope-styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="nope-card">
+            <div class="icon-container">
+                <div class="nope-icon">🚫</div>
+            </div>
+            
+            <h1>NOPE!</h1>
+            <h2>Accès Refusé</h2>
+            
+            <div class="error-content">
+                <p class="main-message">
+                    ❌ Votre tentative de connexion a échoué
+                </p>
+                
+                <div class="error-reasons">
+                    <div class="reason-item">
+                        <span class="icon">🔑</span>
+                        <span>Identifiants incorrects</span>
+                    </div>
+                    <div class="reason-item">
+                        <span class="icon">🛡️</span>
+                        <span>Captcha invalide</span>
+                    </div>
+                    <div class="reason-item">
+                        <span class="icon">⚠️</span>
+                        <span>Erreur de sécurité</span>
+                    </div>
+                </div>
+
+                <div class="status-info">
+                    <div class="info-box error">
+                        <div class="info-header">
+                            <span class="info-icon">🔒</span>
+                            <span class="info-title">Sécurité Altchat</span>
+                        </div>
+                        <p>Votre tentative d'accès a été bloquée par notre système de sécurité.</p>
+                    </div>
+                </div>
+
+                <div class="help-section">
+                    <h3>💡 Que faire maintenant ?</h3>
+                    <ul class="help-list">
+                        <li>Vérifiez vos identifiants de connexion</li>
+                        <li>Assurez-vous d'avoir complété le captcha</li>
+                        <li>Utilisez un des comptes de test valides</li>
+                        <li>Vérifiez que Sentinel est en cours d'exécution</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="actions">
+                <a href="/" class="btn btn-primary">
+                    🔄 Réessayer
+                </a>
+                <a href="http://localhost:8080/#/dashboard" target="_blank" class="btn btn-secondary">
+                    📊 Dashboard Sentinel
+                </a>
+            </div>
+
+            <div class="footer">
+                <p>🛡️ Protégé par Altchat via Sentinel</p>
+                <small>Security Group: sgr_1j1ifgqj00090kd8rgu</small>
+                <div class="error-time">
+                    <small>Tentative bloquée le: <span id="error-time"></span></small>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-info">
+            <div class="info-card">
+                <h3>📝 Comptes de test</h3>
+                <div class="test-accounts">
+                    <div class="account">
+                        <strong>admin</strong>
+                        <span>password123</span>
+                    </div>
+                    <div class="account">
+                        <strong>user</strong>
+                        <span>test123</span>
+                    </div>
+                    <div class="account">
+                        <strong>demo</strong>
+                        <span>demo123</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Animation d'échec -->
+        <div class="shake-elements">
+            <div class="error-particle"></div>
+            <div class="error-particle"></div>
+            <div class="error-particle"></div>
+        </div>
+    </div>
+
+    <script>
+        // Afficher l'heure de l'erreur
+        const now = new Date();
+        const timeString = now.toLocaleString('fr-FR', {
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+        });
+        document.getElementById('error-time').textContent = timeString;
+
+        // Animation de shake au chargement
+        setTimeout(() => {
+            document.querySelector('.nope-card').classList.add('shake-once');
+        }, 300);
+
+        // Effet de particules d'erreur
+        function createErrorParticles() {
+            const colors = ['#ff6b6b', '#e74c3c', '#c0392b'];
+            
+            setInterval(() => {
+                const particle = document.createElement('div');
+                particle.className = 'floating-error-particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                document.body.appendChild(particle);
+                
+                setTimeout(() => {
+                    particle.remove();
+                }, 4000);
+            }, 800);
+        }
+
+        // Démarrer l'animation des particules
+        setTimeout(createErrorParticles, 1000);
+
+        // Son d'erreur simulé (visuel)
+        function playErrorSound() {
+            const soundIcon = document.createElement('div');
+            soundIcon.textContent = '🔊';
+            soundIcon.style.position = 'fixed';
+            soundIcon.style.top = '20px';
+            soundIcon.style.right = '20px';
+            soundIcon.style.fontSize = '2em';
+            soundIcon.style.zIndex = '9999';
+            soundIcon.style.animation = 'fadeOut 2s ease-out forwards';
+            document.body.appendChild(soundIcon);
+
+            setTimeout(() => {
+                soundIcon.remove();
+            }, 2000);
+        }
+
+        playErrorSound();
+    </script>
+</body>
+</html>
